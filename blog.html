@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日記 ｜ 安土桃山時代</title>
+<meta name="description" content="安土桃山時代について調べ、感じたことを綴る日記">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Old+Mincho:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --momoiro: #F0A8AC;
+    --momoiro-deep: #D8737B;
+    --momoiro-pale: #FBE6E4;
+    --kin: #C6A15B;
+    --kin-light: #E8D6A0;
+    --sumi: #2A211D;
+    --kinari: #F6EEDD;
+    --enji: #8E2F3B;
+    --shadow-scroll: 0 8px 28px rgba(42,33,29,0.18);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--kinari);
+    color:var(--sumi);
+    font-family:"Zen Old Mincho", "Noto Serif JP", serif;
+    line-height:1.9;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(198,161,91,0.06), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(216,115,123,0.07), transparent 45%);
+  }
+
+  h1,h2,h3, .brand{
+    font-family:"Shippori Mincho", serif;
+    letter-spacing:0.06em;
+  }
+  a{ color:inherit; text-decoration:none; }
+  .eng{
+    font-family:"Cormorant Garamond", serif;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- NAV (shared) ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,238,221,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(198,161,91,0.5);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{
+    font-size:1.15rem; font-weight:800; color:var(--enji);
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand small{
+    font-family:"Cormorant Garamond", serif;
+    font-size:0.65rem; letter-spacing:0.3em;
+    color:var(--kin); text-transform:uppercase;
+  }
+  nav ul{ list-style:none; display:flex; gap:32px; }
+  nav a{ font-size:0.92rem; position:relative; padding-bottom:4px; transition:color .25s ease; }
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--momoiro-deep);
+    transition:width .3s ease;
+  }
+  nav a:hover{ color:var(--enji); }
+  nav a:hover::after{ width:100%; }
+  nav a.active{ color:var(--enji); }
+  nav a.active::after{ width:100%; background:var(--kin); }
+  .menu-btn{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
+  .menu-btn span{ width:22px; height:2px; background:var(--sumi); display:block; }
+
+  @media (max-width:760px){
+    nav ul{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0;
+      background:var(--kinari);
+      border-bottom:1px solid rgba(198,161,91,0.5);
+      max-height:0; overflow:hidden;
+      transition:max-height .35s ease;
+    }
+    nav ul.open{ max-height:260px; }
+    nav ul li{ border-top:1px solid rgba(198,161,91,0.25); }
+    nav a{ display:block; padding:16px 24px; }
+    .menu-btn{ display:flex; }
+  }
+
+  /* ---------- Page header banner ---------- */
+  .page-banner{
+    position:relative;
+    padding:76px 24px 64px;
+    text-align:center;
+    background:linear-gradient(180deg, var(--momoiro-pale) 0%, var(--momoiro) 100%);
+    overflow:hidden;
+  }
+  .page-banner::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:70px;
+    background:linear-gradient(90deg, transparent, var(--kin-light) 20%, var(--kin) 50%, var(--kin-light) 80%, transparent);
+    opacity:0.4;
+    clip-path:polygon(0 60%,10% 100%,25% 45%,40% 90%,55% 30%,70% 85%,85% 20%,100% 70%,100% 100%,0 100%);
+  }
+  .page-banner .eng{ font-size:0.75rem; color:var(--enji); }
+  .page-banner h1{
+    margin-top:14px;
+    font-size:clamp(2.1rem, 5vw, 3rem);
+    color:var(--sumi);
+  }
+  .page-banner p{ margin-top:16px; color:#5a4a40; font-size:0.98rem; }
+
+  /* ---------- Diary list ---------- */
+  main{ max-width:760px; margin:0 auto; padding:70px 24px 100px; }
+
+  .entry{
+    position:relative;
+    padding:34px clamp(22px, 5vw, 48px);
+    margin-bottom:36px;
+    background:#fffefb;
+    border:1px solid rgba(198,161,91,0.4);
+    box-shadow:0 4px 16px rgba(42,33,29,0.08);
+    opacity:0; transform:translateY(20px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .entry.in{ opacity:1; transform:translateY(0); }
+  .entry::before{
+    content:""; position:absolute; top:0; left:0; height:100%; width:4px;
+    background:linear-gradient(180deg, var(--momoiro-deep), var(--kin));
+  }
+
+  .entry-date{
+    display:flex; align-items:baseline; gap:10px; margin-bottom:14px;
+  }
+  .entry-date .day{
+    font-family:"Shippori Mincho", serif; font-size:1.35rem; color:var(--enji); font-weight:600;
+  }
+  .entry-date .era{
+    font-family:"Cormorant Garamond", serif; font-style:italic; font-size:0.8rem;
+    color:var(--kin); letter-spacing:0.1em;
+  }
+
+  .entry h2{
+    font-size:1.15rem; color:var(--sumi); margin-bottom:12px; font-weight:600;
+  }
+
+  .entry p{
+    font-size:0.97rem; color:#4a3d34;
+  }
+  .entry p + p{ margin-top:1em; text-indent:1em; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .entry{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- Footer (shared) ---------- */
+  footer{
+    background:var(--sumi); color:var(--kinari);
+    padding:56px 24px 32px;
+    text-align:center;
+  }
+  footer .brand-foot{
+    font-family:"Shippori Mincho", serif; font-size:1.1rem; color:var(--kin-light);
+    margin-bottom:14px;
+  }
+  footer .notice{
+    max-width:560px; margin:0 auto 24px;
+    font-size:0.78rem; line-height:1.8; color:#c9bdb0;
+  }
+  footer .hub-link{
+    display:inline-block; margin-bottom:24px;
+    font-size:0.85rem; color:var(--momoiro);
+    border-bottom:1px solid var(--momoiro-deep); padding-bottom:2px;
+  }
+  footer .copy{ font-size:0.72rem; color:#8a7d70; font-family:"Cormorant Garamond", serif; letter-spacing:0.1em; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">安土桃山時代<small>Azuchi–Momoyama</small></a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニュー" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="blog.html" class="active">日記</a></li>
+        <li><a href="gallery.html">画集</a></li>
+        <li><a href="about.html">このサイトについて</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-banner">
+  <p class="eng">Diary</p>
+  <h1>日記</h1>
+  <p>安土桃山時代を調べ、感じたことを綴る記録です。</p>
+</div>
+
+<main>
+
+  <article class="entry">
+    <div class="entry-date">
+      <span class="day">2026年8月23日</span>
+      <span class="era eng">Sun</span>
+    </div>
+    <h2>絵巻のように、少しずつ</h2>
+    <p>ようやくサイトの骨組みができた。安土桃山という短い時代に、なぜこんなに惹かれるのだろうと考えていたけれど、答えは単純で、あの時代だけ「絢爛」と「侘び」が同じ画面に同居しているからだと思う。</p>
+    <p>まずは金碧障壁画から少しずつ調べていきたい。</p>
+  </article>
+
+  <article class="entry">
+    <div class="entry-date">
+      <span class="day">2026年8月18日</span>
+      <span class="era eng">Tue</span>
+    </div>
+    <h2>狩野永徳の金地</h2>
+    <p>狩野永徳の障壁画について調べた。金箔の地に描かれた大樹や花鳥は、遠くからでも一目で目を引くように計算されているのだと知って驚いた。城の薄暗い室内を、少しの光でも輝かせるための工夫だったらしい。</p>
+  </article>
+
+  <article class="entry">
+    <div class="entry-date">
+      <span class="day">2026年8月10日</span>
+      <span class="era eng">Mon</span>
+    </div>
+    <h2>侘び茶とは何か</h2>
+    <p>千利休の侘び茶について、これまでなんとなくでしか理解していなかったことに気づいた。華美を退けるという行為そのものが、実はこの時代の豪奢な美意識への強い応答だったのかもしれない、と思うと見え方が変わってくる。</p>
+  </article>
+
+</main>
+
+<footer>
+  <p class="brand-foot">安土桃山時代 ― 黄金と侘びが交わりし刻</p>
+  <p class="notice">
+    当サイトの文章・画像を、AIモデルの学習データとして使用することを固く禁じます。<br>
+    No content on this site may be used for AI training purposes.
+  </p>
+  <a class="hub-link" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Azalea Creative Room へ戻る</a>
+  <p class="copy">&copy; 2026 Azalea72 / アザレアななじゅうに</p>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+
+  const entries = document.querySelectorAll('.entry');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    entries.forEach(el => io.observe(el));
+  } else {
+    entries.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
