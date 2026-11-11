@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>このサイトについて ｜ 安土桃山時代</title>
+<meta name="description" content="安土桃山時代サイトの案内、運営者のリンク集、お問い合わせフォーム">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Old+Mincho:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --momoiro: #F0A8AC;
+    --momoiro-deep: #D8737B;
+    --momoiro-pale: #FBE6E4;
+    --kin: #C6A15B;
+    --kin-light: #E8D6A0;
+    --sumi: #2A211D;
+    --kinari: #F6EEDD;
+    --enji: #8E2F3B;
+    --shadow-scroll: 0 8px 28px rgba(42,33,29,0.18);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--kinari);
+    color:var(--sumi);
+    font-family:"Zen Old Mincho", "Noto Serif JP", serif;
+    line-height:1.9;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(198,161,91,0.06), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(216,115,123,0.07), transparent 45%);
+  }
+
+  h1,h2,h3, .brand{ font-family:"Shippori Mincho", serif; letter-spacing:0.06em; }
+  a{ color:inherit; text-decoration:none; }
+  .eng{ font-family:"Cormorant Garamond", serif; letter-spacing:0.28em; text-transform:uppercase; }
+
+  /* ---------- NAV (shared) ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,238,221,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(198,161,91,0.5);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{ font-size:1.15rem; font-weight:800; color:var(--enji); display:flex; align-items:baseline; gap:8px; }
+  .brand small{
+    font-family:"Cormorant Garamond", serif;
+    font-size:0.65rem; letter-spacing:0.3em; color:var(--kin); text-transform:uppercase;
+  }
+  nav ul{ list-style:none; display:flex; gap:32px; }
+  nav a{ font-size:0.92rem; position:relative; padding-bottom:4px; transition:color .25s ease; }
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--momoiro-deep);
+    transition:width .3s ease;
+  }
+  nav a:hover{ color:var(--enji); }
+  nav a:hover::after{ width:100%; }
+  nav a.active{ color:var(--enji); }
+  nav a.active::after{ width:100%; background:var(--kin); }
+  .menu-btn{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
+  .menu-btn span{ width:22px; height:2px; background:var(--sumi); display:block; }
+
+  @media (max-width:760px){
+    nav ul{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0;
+      background:var(--kinari);
+      border-bottom:1px solid rgba(198,161,91,0.5);
+      max-height:0; overflow:hidden;
+      transition:max-height .35s ease;
+    }
+    nav ul.open{ max-height:260px; }
+    nav ul li{ border-top:1px solid rgba(198,161,91,0.25); }
+    nav a{ display:block; padding:16px 24px; }
+    .menu-btn{ display:flex; }
+  }
+
+  /* ---------- Page banner ---------- */
+  .page-banner{
+    position:relative;
+    padding:76px 24px 64px;
+    text-align:center;
+    background:linear-gradient(180deg, var(--momoiro-pale) 0%, var(--momoiro) 100%);
+    overflow:hidden;
+  }
+  .page-banner::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:70px;
+    background:linear-gradient(90deg, transparent, var(--kin-light) 20%, var(--kin) 50%, var(--kin-light) 80%, transparent);
+    opacity:0.4;
+    clip-path:polygon(0 60%,10% 100%,25% 45%,40% 90%,55% 30%,70% 85%,85% 20%,100% 70%,100% 100%,0 100%);
+  }
+  .page-banner .eng{ font-size:0.75rem; color:var(--enji); }
+  .page-banner h1{ margin-top:14px; font-size:clamp(2.1rem, 5vw, 3rem); color:var(--sumi); }
+  .page-banner p{ margin-top:16px; color:#5a4a40; font-size:0.98rem; }
+
+  /* ---------- Main ---------- */
+  main{ max-width:860px; margin:0 auto; padding:70px 24px 100px; }
+
+  .section-label{
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:20px;
+    font-family:"Shippori Mincho", serif; font-size:1.05rem; color:var(--enji); font-weight:600;
+  }
+  .section-label .eng{ font-size:0.68rem; color:var(--kin); font-weight:400; }
+  .section-label::after{
+    content:""; flex:1; height:1px;
+    background:linear-gradient(90deg, rgba(198,161,91,0.7), transparent);
+  }
+
+  /* ---------- Link cards ---------- */
+  .link-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+    gap:16px; margin-bottom:56px;
+  }
+  .link-card{
+    position:relative;
+    display:flex; align-items:center; gap:14px;
+    padding:16px 18px;
+    background:#fffefb;
+    border:1px solid rgba(198,161,91,0.45);
+    box-shadow:0 3px 12px rgba(42,33,29,0.07);
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .link-card::before{
+    content:""; position:absolute; top:0; left:0; bottom:0; width:4px;
+    background:linear-gradient(180deg, var(--momoiro-deep), var(--kin));
+  }
+  .link-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 22px rgba(42,33,29,0.14);
+    border-color:var(--momoiro-deep);
+  }
+  .link-icon{
+    flex-shrink:0; width:44px; height:44px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem;
+    background:var(--momoiro-pale);
+    border:1px solid rgba(216,115,123,0.35);
+    border-radius:50%;
+  }
+  .link-text{ flex:1; min-width:0; }
+  .link-name{ display:block; font-family:"Shippori Mincho", serif; font-size:0.98rem; font-weight:600; color:var(--sumi); }
+  .link-desc{ display:block; font-size:0.78rem; color:#7a6a5e; line-height:1.5; margin-top:2px; }
+  .link-arrow{ color:var(--kin); font-size:1.3rem; transition:transform .3s ease, color .3s ease; }
+  .link-card:hover .link-arrow{ transform:translateX(3px); color:var(--enji); }
+
+  /* ---------- Form ---------- */
+  .form-card{
+    position:relative;
+    padding:34px clamp(22px, 5vw, 44px);
+    background:#fffefb;
+    border:1px solid rgba(198,161,91,0.45);
+    box-shadow:var(--shadow-scroll);
+    margin-bottom:40px;
+  }
+  .form-card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg, var(--momoiro-deep), var(--kin));
+  }
+  .form-intro{ font-size:0.92rem; color:#54463c; margin-bottom:26px; }
+
+  .form-group{ margin-bottom:20px; }
+  .form-label{
+    display:block; margin-bottom:6px;
+    font-size:0.85rem; color:var(--enji); font-weight:600; letter-spacing:0.08em;
+  }
+  .required{ color:var(--momoiro-deep); font-style:normal; }
+
+  .form-input, .form-textarea{
+    width:100%;
+    background:var(--kinari);
+    border:1px solid rgba(198,161,91,0.6);
+    border-radius:2px;
+    color:var(--sumi);
+    font-family:"Zen Old Mincho", serif; font-size:0.95rem;
+    padding:11px 14px;
+    outline:none;
+    transition:border-color .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .form-input::placeholder, .form-textarea::placeholder{ color:#a99b8c; }
+  .form-input:focus, .form-textarea:focus{
+    background:#fff;
+    border-color:var(--momoiro-deep);
+    box-shadow:0 0 0 3px rgba(240,168,172,0.35);
+  }
+  .form-textarea{ resize:vertical; min-height:150px; }
+
+  .field-error{ display:block; font-size:0.78rem; color:var(--enji); margin-top:5px; }
+
+  .form-submit{
+    display:inline-flex; align-items:center; gap:8px;
+    background:linear-gradient(135deg, var(--momoiro-deep), var(--enji));
+    border:1px solid var(--enji);
+    color:#fff;
+    font-family:"Shippori Mincho", serif; font-size:0.98rem; letter-spacing:0.18em;
+    padding:12px 34px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(142,47,59,0.3);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .form-submit:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(142,47,59,0.35); }
+  .form-submit:disabled{ opacity:0.5; cursor:not-allowed; transform:none; }
+
+  .form-success{
+    background:var(--momoiro-pale);
+    border:1px solid var(--momoiro-deep);
+    padding:16px 20px; text-align:center;
+    color:var(--enji); font-size:0.95rem; margin-bottom:20px;
+  }
+  .form-success-icon{ display:block; color:var(--kin); font-size:1.2rem; margin-bottom:6px; }
+  .form-error-global{
+    background:#fdecea; border:1px solid var(--enji);
+    padding:12px 16px; color:var(--enji); font-size:0.88rem; margin-bottom:16px;
+  }
+
+  .back-link{
+    display:inline-block; font-size:0.88rem; color:var(--enji);
+    border-bottom:1px solid var(--momoiro-deep); padding-bottom:2px;
+    transition:color .25s ease;
+  }
+  .back-link:hover{ color:var(--momoiro-deep); }
+
+  @media (max-width:560px){
+    .link-grid{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .link-card, .form-submit{ transition:none; }
+  }
+
+  /* ---------- Footer (shared) ---------- */
+  footer{ background:var(--sumi); color:var(--kinari); padding:56px 24px 32px; text-align:center; }
+  footer .brand-foot{ font-family:"Shippori Mincho", serif; font-size:1.1rem; color:var(--kin-light); margin-bottom:14px; }
+  footer .notice{ max-width:600px; margin:0 auto 24px; font-size:0.78rem; line-height:1.8; color:#c9bdb0; }
+  footer .hub-link{
+    display:inline-block; margin-bottom:24px; font-size:0.85rem; color:var(--momoiro);
+    border-bottom:1px solid var(--momoiro-deep); padding-bottom:2px;
+  }
+  footer .copy{ font-size:0.72rem; color:#8a7d70; font-family:"Cormorant Garamond", serif; letter-spacing:0.1em; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">安土桃山時代<small>Azuchi–Momoyama</small></a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニュー" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="blog.html">日記</a></li>
+        <li><a href="gallery.html">画集</a></li>
+        <li><a href="about.html" class="active">このサイトについて</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-banner">
+  <p class="eng">About &amp; Contact</p>
+  <h1>このサイトについて</h1>
+  <p>運営者のリンク集と、お問い合わせフォームです。</p>
+</div>
+
+<main>
+
+  <p class="section-label">漫画・イラスト掲載サイト <span class="eng">Works</span></p>
+  <div class="link-grid">
+
+    <a class="link-card" href="https://rookie.shonenjump.com/users/14728546961183734555" target="_blank" rel="noopener">
+      <div class="link-icon">📚</div>
+      <div class="link-text">
+        <span class="link-name">ジャンプルーキー</span>
+        <span class="link-desc">オリジナル漫画を掲載中</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">
+      <div class="link-icon">🎨</div>
+      <div class="link-text">
+        <span class="link-name">Pixiv</span>
+        <span class="link-desc">二次創作はこちらに掲載</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+  </div>
+
+  <p class="section-label">SNS・その他 <span class="eng">Social</span></p>
+  <div class="link-grid">
+
+    <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+      <div class="link-icon">🦋</div>
+      <div class="link-text">
+        <span class="link-name">Bluesky</span>
+        <span class="link-desc">近況・作品のお知らせ</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">
+      <div class="link-icon">🎬</div>
+      <div class="link-text">
+        <span class="link-name">YouTube（リリポピ）</span>
+        <span class="link-desc">動画チャンネル</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://lilipopi.github.io/lilypopins/" target="_blank" rel="noopener">
+      <div class="link-icon">🌸</div>
+      <div class="link-text">
+        <span class="link-name">リリポピのホームページ</span>
+        <span class="link-desc">別サイト</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+  </div>
+
+  <p class="section-label">Azalea72のホームページ <span class="eng">Sites</span></p>
+  <div class="link-grid">
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">
+      <div class="link-icon">🏠</div>
+      <div class="link-text">
+        <span class="link-name">Azalea Creative Room</span>
+        <span class="link-desc">メインのホームページ</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" rel="noopener">
+      <div class="link-icon">📖</div>
+      <div class="link-text">
+        <span class="link-name">書評サイト</span>
+        <span class="link-desc">本・アニメ・映画・ゲーム・小説の備忘録</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-english/" target="_blank" rel="noopener">
+      <div class="link-icon">🍔</div>
+      <div class="link-text">
+        <span class="link-name">英語サイト（English Site）</span>
+        <span class="link-desc">英語話者と英語学習者に向けたサイト</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-watercolor/" target="_blank" rel="noopener">
+      <div class="link-icon">☁️</div>
+      <div class="link-text">
+        <span class="link-name">水彩画サイト</span>
+        <span class="link-desc">水彩画掲載</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+  </div>
+
+  <p class="section-label">お問い合わせフォーム <span class="eng">Contact</span></p>
+
+  <div class="form-card">
+    <p class="form-intro">ご質問・ご感想などはこちらからどうぞ。<br>Gmailで受け取り、返信いたします。</p>
+
+    <div data-fs-success class="form-success" style="display:none;">
+      <span class="form-success-icon">✦</span>
+      <p>メッセージを送信しました。ありがとうございます！</p>
+    </div>
+
+    <div data-fs-error class="form-error-global" style="display:none;"></div>
+
+    <form id="contact-form" action="https://formspree.io/f/maqvpvoz" method="POST">
+
+      <div class="form-group">
+        <label class="form-label" for="name">お名前</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="お名前（ニックネーム可）">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">メールアドレス <span class="required">*</span></label>
+        <input class="form-input" type="email" id="email" name="email" data-fs-field placeholder="example@email.com" required>
+        <span data-fs-error="email" class="field-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">メッセージ <span class="required">*</span></label>
+        <textarea class="form-textarea" id="message" name="message" data-fs-field placeholder="メッセージを入力してください…" rows="6" required></textarea>
+        <span data-fs-error="message" class="field-error"></span>
+      </div>
+
+      <button class="form-submit" type="submit" data-fs-submit-btn>
+        <span class="submit-icon">📮</span> 送信する
+      </button>
+
+    </form>
+  </div>
+
+  <a class="back-link" href="index.html">← トップページに戻る</a>
+
+</main>
+
+<footer>
+  <p class="brand-foot">安土桃山時代 ― 黄金と侘びが交わりし刻</p>
+  <p class="notice">
+    当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載、二次利用を禁止します。<br>
+    Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.
+  </p>
+  <a class="hub-link" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Azalea Creative Room へ戻る</a>
+  <p class="copy">&copy; 2026 Azalea72 / アザレアななじゅうに</p>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'maqvpvoz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
