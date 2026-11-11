@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>画集 ｜ 安土桃山時代</title>
+<meta name="description" content="安土桃山時代をモチーフにしたイラスト集">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Old+Mincho:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --momoiro: #F0A8AC;
+    --momoiro-deep: #D8737B;
+    --momoiro-pale: #FBE6E4;
+    --kin: #C6A15B;
+    --kin-light: #E8D6A0;
+    --sumi: #2A211D;
+    --kinari: #F6EEDD;
+    --enji: #8E2F3B;
+    --shadow-scroll: 0 8px 28px rgba(42,33,29,0.18);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--kinari);
+    color:var(--sumi);
+    font-family:"Zen Old Mincho", "Noto Serif JP", serif;
+    line-height:1.9;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(198,161,91,0.06), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(216,115,123,0.07), transparent 45%);
+  }
+
+  h1,h2,h3, .brand{ font-family:"Shippori Mincho", serif; letter-spacing:0.06em; }
+  a{ color:inherit; text-decoration:none; }
+  .eng{ font-family:"Cormorant Garamond", serif; letter-spacing:0.28em; text-transform:uppercase; }
+
+  /* ---------- NAV (shared) ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,238,221,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(198,161,91,0.5);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{ font-size:1.15rem; font-weight:800; color:var(--enji); display:flex; align-items:baseline; gap:8px; }
+  .brand small{
+    font-family:"Cormorant Garamond", serif;
+    font-size:0.65rem; letter-spacing:0.3em; color:var(--kin); text-transform:uppercase;
+  }
+  nav ul{ list-style:none; display:flex; gap:32px; }
+  nav a{ font-size:0.92rem; position:relative; padding-bottom:4px; transition:color .25s ease; }
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--momoiro-deep);
+    transition:width .3s ease;
+  }
+  nav a:hover{ color:var(--enji); }
+  nav a:hover::after{ width:100%; }
+  nav a.active{ color:var(--enji); }
+  nav a.active::after{ width:100%; background:var(--kin); }
+  .menu-btn{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
+  .menu-btn span{ width:22px; height:2px; background:var(--sumi); display:block; }
+
+  @media (max-width:760px){
+    nav ul{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0;
+      background:var(--kinari);
+      border-bottom:1px solid rgba(198,161,91,0.5);
+      max-height:0; overflow:hidden;
+      transition:max-height .35s ease;
+    }
+    nav ul.open{ max-height:260px; }
+    nav ul li{ border-top:1px solid rgba(198,161,91,0.25); }
+    nav a{ display:block; padding:16px 24px; }
+    .menu-btn{ display:flex; }
+  }
+
+  /* ---------- Page banner ---------- */
+  .page-banner{
+    position:relative;
+    padding:76px 24px 64px;
+    text-align:center;
+    background:linear-gradient(180deg, var(--momoiro-pale) 0%, var(--momoiro) 100%);
+    overflow:hidden;
+  }
+  .page-banner::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:70px;
+    background:linear-gradient(90deg, transparent, var(--kin-light) 20%, var(--kin) 50%, var(--kin-light) 80%, transparent);
+    opacity:0.4;
+    clip-path:polygon(0 60%,10% 100%,25% 45%,40% 90%,55% 30%,70% 85%,85% 20%,100% 70%,100% 100%,0 100%);
+  }
+  .page-banner .eng{ font-size:0.75rem; color:var(--enji); }
+  .page-banner h1{ margin-top:14px; font-size:clamp(2.1rem, 5vw, 3rem); color:var(--sumi); }
+  .page-banner p{ margin-top:16px; color:#5a4a40; font-size:0.98rem; }
+
+  /* ---------- Gallery ---------- */
+  main{ max-width:1000px; margin:0 auto; padding:70px 24px 100px; }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:32px 26px;
+  }
+  @media (max-width:860px){ .grid{ grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:520px){ .grid{ grid-template-columns:1fr; } }
+
+  /* 掛け軸風の額 */
+  .piece{
+    opacity:0; transform:translateY(20px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .piece.in{ opacity:1; transform:translateY(0); }
+
+  .frame{
+    display:block; width:100%; cursor:pointer;
+    background:none; border:none; text-align:left; font:inherit; color:inherit;
+  }
+  .mount{
+    position:relative;
+    padding:14px;
+    background:linear-gradient(180deg, #fffdf8, #f1e3c8);
+    border:1px solid rgba(198,161,91,0.55);
+    box-shadow:0 4px 16px rgba(42,33,29,0.12);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .mount::before, .mount::after{
+    content:""; position:absolute; left:-4px; right:-4px; height:6px;
+    background:linear-gradient(90deg, #4a332a, #6b4a3a 50%, #3a2721);
+    border-radius:3px;
+  }
+  .mount::before{ top:-3px; }
+  .mount::after{ bottom:-3px; }
+  .frame:hover .mount, .frame:focus-visible .mount{
+    transform:translateY(-4px); box-shadow:0 12px 26px rgba(42,33,29,0.2);
+  }
+  .frame:focus-visible{ outline:2px solid var(--momoiro-deep); outline-offset:6px; }
+
+  .art{
+    aspect-ratio:3 / 4;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.45), transparent 50%),
+      linear-gradient(160deg, var(--momoiro-pale), var(--momoiro));
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .art img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .art .ph{
+    font-family:"Shippori Mincho", serif; color:var(--enji); opacity:0.55;
+    font-size:0.9rem; letter-spacing:0.3em; writing-mode:vertical-rl;
+  }
+
+  .caption{ padding:14px 4px 0; }
+  .caption .no{
+    font-family:"Cormorant Garamond", serif; font-style:italic; color:var(--kin);
+    font-size:0.8rem; letter-spacing:0.18em;
+  }
+  .caption h2{ font-size:1rem; color:var(--sumi); margin-top:2px; font-weight:600; }
+  .caption .date{ font-size:0.78rem; color:#7a6a5e; margin-top:2px; }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:100;
+    background:rgba(42,33,29,0.88);
+    display:none; align-items:center; justify-content:center;
+    padding:24px;
+  }
+  .lightbox.open{ display:flex; }
+  .lb-inner{ max-width:min(560px, 100%); max-height:100%; text-align:center; }
+  .lb-art{
+    aspect-ratio:3 / 4; max-height:72vh; margin:0 auto;
+    border:10px solid #fffdf8; box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    background:linear-gradient(160deg, var(--momoiro-pale), var(--momoiro));
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .lb-art img{ width:100%; height:100%; object-fit:cover; }
+  .lb-art .ph{ font-family:"Shippori Mincho", serif; color:var(--enji); opacity:0.55; letter-spacing:0.3em; writing-mode:vertical-rl; }
+  .lb-title{ margin-top:16px; font-family:"Shippori Mincho", serif; color:var(--kin-light); font-size:1.1rem; }
+  .lb-date{ color:#c9bdb0; font-size:0.82rem; }
+  .lb-close{
+    position:absolute; top:18px; right:22px;
+    background:none; border:none; color:var(--kinari); font-size:2rem; cursor:pointer; line-height:1;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .piece{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- Footer (shared) ---------- */
+  footer{ background:var(--sumi); color:var(--kinari); padding:56px 24px 32px; text-align:center; }
+  footer .brand-foot{ font-family:"Shippori Mincho", serif; font-size:1.1rem; color:var(--kin-light); margin-bottom:14px; }
+  footer .notice{ max-width:560px; margin:0 auto 24px; font-size:0.78rem; line-height:1.8; color:#c9bdb0; }
+  footer .hub-link{
+    display:inline-block; margin-bottom:24px; font-size:0.85rem; color:var(--momoiro);
+    border-bottom:1px solid var(--momoiro-deep); padding-bottom:2px;
+  }
+  footer .copy{ font-size:0.72rem; color:#8a7d70; font-family:"Cormorant Garamond", serif; letter-spacing:0.1em; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">安土桃山時代<small>Azuchi–Momoyama</small></a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニュー" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="blog.html">日記</a></li>
+        <li><a href="gallery.html" class="active">画集</a></li>
+        <li><a href="about.html">このサイトについて</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-banner">
+  <p class="eng">Gallery</p>
+  <h1>画集</h1>
+  <p>安土桃山時代をモチーフに描いたイラストを並べています。</p>
+</div>
+
+<main>
+  <!--
+    画像の差し替え方:
+    各 .art の中の <span class="ph">…</span> を
+    <img src="images/xxx.png" alt="作品名"> に置き換えてください。
+    ライトボックスにも同じ画像が自動で表示されます。
+  -->
+  <div class="grid" id="grid">
+
+    <div class="piece">
+      <button class="frame" data-title="天下人" data-date="2026年8月">
+        <div class="mount"><div class="art"><span class="ph">天下人</span></div></div>
+        <div class="caption"><span class="no">No. 01</span><h2>天下人</h2><p class="date">2026年8月</p></div>
+      </button>
+    </div>
+
+    <div class="piece">
+      <button class="frame" data-title="金碧の城" data-date="2026年8月">
+        <div class="mount"><div class="art"><span class="ph">金碧の城</span></div></div>
+        <div class="caption"><span class="no">No. 02</span><h2>金碧の城</h2><p class="date">2026年8月</p></div>
+      </button>
+    </div>
+
+    <div class="piece">
+      <button class="frame" data-title="茶の湯" data-date="2026年8月">
+        <div class="mount"><div class="art"><span class="ph">茶の湯</span></div></div>
+        <div class="caption"><span class="no">No. 03</span><h2>茶の湯</h2><p class="date">2026年8月</p></div>
+      </button>
+    </div>
+
+    <div class="piece">
+      <button class="frame" data-title="南蛮船" data-date="2026年9月">
+        <div class="mount"><div class="art"><span class="ph">南蛮船</span></div></div>
+        <div class="caption"><span class="no">No. 04</span><h2>南蛮船</h2><p class="date">2026年9月</p></div>
+      </button>
+    </div>
+
+    <div class="piece">
+      <button class="frame" data-title="桃の花" data-date="2026年9月">
+        <div class="mount"><div class="art"><span class="ph">桃の花</span></div></div>
+        <div class="caption"><span class="no">No. 05</span><h2>桃の花</h2><p class="date">2026年9月</p></div>
+      </button>
+    </div>
+
+    <div class="piece">
+      <button class="frame" data-title="花見の宴" data-date="2026年10月">
+        <div class="mount"><div class="art"><span class="ph">花見の宴</span></div></div>
+        <div class="caption"><span class="no">No. 06</span><h2>花見の宴</h2><p class="date">2026年10月</p></div>
+      </button>
+    </div>
+
+  </div>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="作品拡大表示">
+  <button class="lb-close" id="lbClose" aria-label="閉じる">&times;</button>
+  <div class="lb-inner">
+    <div class="lb-art" id="lbArt"></div>
+    <p class="lb-title" id="lbTitle"></p>
+    <p class="lb-date" id="lbDate"></p>
+  </div>
+</div>
+
+<footer>
+  <p class="brand-foot">安土桃山時代 ― 黄金と侘びが交わりし刻</p>
+  <p class="notice">
+    当サイトの文章・画像を、AIモデルの学習データとして使用することを固く禁じます。<br>
+    No content on this site may be used for AI training purposes.
+  </p>
+  <a class="hub-link" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Azalea Creative Room へ戻る</a>
+  <p class="copy">&copy; 2026 Azalea72 / アザレアななじゅうに</p>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+
+  // scroll reveal
+  const pieces = document.querySelectorAll('.piece');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    pieces.forEach(el => io.observe(el));
+  } else {
+    pieces.forEach(el => el.classList.add('in'));
+  }
+
+  // lightbox
+  const lb = document.getElementById('lightbox');
+  const lbArt = document.getElementById('lbArt');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbDate = document.getElementById('lbDate');
+  let lastFocus = null;
+
+  document.querySelectorAll('.frame').forEach(btn => {
+    btn.addEventListener('click', () => {
+      lastFocus = btn;
+      lbArt.innerHTML = btn.querySelector('.art').innerHTML;
+      lbTitle.textContent = btn.dataset.title;
+      lbDate.textContent = btn.dataset.date;
+      lb.classList.add('open');
+      document.getElementById('lbClose').focus();
+    });
+  });
+
+  function closeLb(){
+    lb.classList.remove('open');
+    if (lastFocus) lastFocus.focus();
+  }
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')) closeLb(); });
+</script>
+
+</body>
+</html>
