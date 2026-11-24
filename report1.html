@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安土桃山時代に関する人物 ｜ 安土桃山時代</title>
+<meta name="description" content="安土桃山時代を彩った人物の名前・没年・解説の一覧">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Old+Mincho:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --momoiro: #F0A8AC;
+    --momoiro-deep: #D8737B;
+    --momoiro-pale: #FBE6E4;
+    --kin: #C6A15B;
+    --kin-light: #E8D6A0;
+    --sumi: #2A211D;
+    --kinari: #F6EEDD;
+    --enji: #8E2F3B;
+    --shadow-scroll: 0 8px 28px rgba(42,33,29,0.18);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--kinari);
+    color:var(--sumi);
+    font-family:"Zen Old Mincho", "Noto Serif JP", serif;
+    line-height:1.9;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(198,161,91,0.06), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(216,115,123,0.07), transparent 45%);
+  }
+
+  h1,h2,h3, .brand{ font-family:"Shippori Mincho", serif; letter-spacing:0.06em; }
+  a{ color:inherit; text-decoration:none; }
+  .eng{ font-family:"Cormorant Garamond", serif; letter-spacing:0.28em; text-transform:uppercase; }
+
+  /* ---------- NAV (shared) ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,238,221,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(198,161,91,0.5);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{ font-size:1.15rem; font-weight:800; color:var(--enji); display:flex; align-items:baseline; gap:8px; }
+  .brand small{
+    font-family:"Cormorant Garamond", serif;
+    font-size:0.65rem; letter-spacing:0.3em; color:var(--kin); text-transform:uppercase;
+  }
+  nav ul{ list-style:none; display:flex; gap:32px; }
+  nav a{ font-size:0.92rem; position:relative; padding-bottom:4px; transition:color .25s ease; }
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--momoiro-deep);
+    transition:width .3s ease;
+  }
+  nav a:hover{ color:var(--enji); }
+  nav a:hover::after{ width:100%; }
+  nav a.active{ color:var(--enji); }
+  nav a.active::after{ width:100%; background:var(--kin); }
+  .menu-btn{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
+  .menu-btn span{ width:22px; height:2px; background:var(--sumi); display:block; }
+
+  @media (max-width:760px){
+    nav ul{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0;
+      background:var(--kinari);
+      border-bottom:1px solid rgba(198,161,91,0.5);
+      max-height:0; overflow:hidden;
+      transition:max-height .35s ease;
+    }
+    nav ul.open{ max-height:260px; }
+    nav ul li{ border-top:1px solid rgba(198,161,91,0.25); }
+    nav a{ display:block; padding:16px 24px; }
+    .menu-btn{ display:flex; }
+  }
+
+  /* ---------- Page banner ---------- */
+  .page-banner{
+    position:relative;
+    padding:76px 24px 64px;
+    text-align:center;
+    background:linear-gradient(180deg, var(--momoiro-pale) 0%, var(--momoiro) 100%);
+    overflow:hidden;
+  }
+  .page-banner::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:70px;
+    background:linear-gradient(90deg, transparent, var(--kin-light) 20%, var(--kin) 50%, var(--kin-light) 80%, transparent);
+    opacity:0.4;
+    clip-path:polygon(0 60%,10% 100%,25% 45%,40% 90%,55% 30%,70% 85%,85% 20%,100% 70%,100% 100%,0 100%);
+  }
+  .page-banner .eng{ font-size:0.75rem; color:var(--enji); }
+  .page-banner h1{ margin-top:14px; font-size:clamp(1.8rem, 5vw, 2.8rem); color:var(--sumi); }
+  .page-banner p{ margin-top:16px; color:#5a4a40; font-size:0.98rem; }
+
+  /* ---------- Main ---------- */
+  main{ max-width:920px; margin:0 auto; padding:70px 24px 100px; }
+
+  .note{
+    text-align:center; font-size:0.85rem; color:#7a6a5e; margin-bottom:48px;
+  }
+
+  .group{
+    margin-bottom:56px;
+    opacity:0; transform:translateY(20px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .group.in{ opacity:1; transform:translateY(0); }
+
+  .section-label{
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:18px;
+    font-family:"Shippori Mincho", serif; font-size:1.1rem; color:var(--enji); font-weight:600;
+  }
+  .section-label .eng{ font-size:0.68rem; color:var(--kin); font-weight:400; }
+  .section-label::after{
+    content:""; flex:1; height:1px;
+    background:linear-gradient(90deg, rgba(198,161,91,0.7), transparent);
+  }
+
+  /* ---------- Table ---------- */
+  .table-wrap{
+    background:#fffefb;
+    border:1px solid rgba(198,161,91,0.5);
+    box-shadow:0 4px 16px rgba(42,33,29,0.08);
+    position:relative;
+  }
+  .table-wrap::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg, var(--momoiro-deep), var(--kin));
+  }
+
+  table{ width:100%; border-collapse:collapse; }
+  thead th{
+    padding:18px 18px 12px;
+    text-align:left;
+    font-family:"Shippori Mincho", serif; font-size:0.82rem; font-weight:600;
+    color:var(--enji); letter-spacing:0.2em;
+    background:var(--momoiro-pale);
+    border-bottom:1px solid rgba(198,161,91,0.55);
+  }
+  tbody tr{ border-bottom:1px solid rgba(198,161,91,0.28); transition:background .25s ease; }
+  tbody tr:last-child{ border-bottom:none; }
+  tbody tr:hover{ background:rgba(251,230,228,0.55); }
+  td{ padding:16px 18px; vertical-align:top; font-size:0.93rem; color:#4a3d34; }
+
+  td.name{
+    width:26%;
+    font-family:"Shippori Mincho", serif; font-size:1.02rem; font-weight:600; color:var(--sumi);
+    white-space:nowrap;
+  }
+  td.year{
+    width:14%;
+    font-family:"Shippori Mincho", serif; color:var(--enji); font-weight:600;
+    white-space:nowrap;
+  }
+  th.c-name{ width:26%; } th.c-year{ width:14%; }
+
+  /* mobile: table rows become cards */
+  @media (max-width:640px){
+    thead{ display:none; }
+    table, tbody, tr, td{ display:block; width:100%; }
+    tbody tr{
+      display:grid; grid-template-columns:1fr auto; column-gap:12px;
+      padding:14px 16px;
+    }
+    td{ padding:0; }
+    td.name{ width:auto; white-space:normal; grid-column:1; }
+    td.year{ width:auto; grid-column:2; text-align:right; }
+    td.desc{ grid-column:1 / -1; margin-top:6px; font-size:0.9rem; }
+  }
+
+  .back-link{
+    display:inline-block; font-size:0.88rem; color:var(--enji);
+    border-bottom:1px solid var(--momoiro-deep); padding-bottom:2px;
+    transition:color .25s ease;
+  }
+  .back-link:hover{ color:var(--momoiro-deep); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .group{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- Footer (shared) ---------- */
+  footer{ background:var(--sumi); color:var(--kinari); padding:56px 24px 32px; text-align:center; }
+  footer .brand-foot{ font-family:"Shippori Mincho", serif; font-size:1.1rem; color:var(--kin-light); margin-bottom:14px; }
+  footer .notice{ max-width:560px; margin:0 auto 24px; font-size:0.78rem; line-height:1.8; color:#c9bdb0; }
+  footer .hub-link{
+    display:inline-block; margin-bottom:24px; font-size:0.85rem; color:var(--momoiro);
+    border-bottom:1px solid var(--momoiro-deep); padding-bottom:2px;
+  }
+  footer .copy{ font-size:0.72rem; color:#8a7d70; font-family:"Cormorant Garamond", serif; letter-spacing:0.1em; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">安土桃山時代<small>Azuchi–Momoyama</small></a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニュー" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="blog.html">日記</a></li>
+        <li><a href="gallery.html" class="active">画集</a></li>
+        <li><a href="about.html">このサイトについて</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-banner">
+  <p class="eng">Special Feature</p>
+  <h1>安土桃山時代に関する人物</h1>
+  <p>この時代を彩った人びとを、名前・没年・解説でたどります。</p>
+</div>
+
+<main>
+
+  <p class="note">没年は西暦です。時代の区切りには諸説あり、ここでは信長の上洛から江戸幕府の成立前後までに関わった人物を中心に載せています。</p>
+
+  <section class="group">
+    <h2 class="section-label">武将・政治 <span class="eng">Warlords</span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="c-name">名前</th><th class="c-year">没年</th><th>解説</th></tr></thead>
+        <tbody>
+          <tr><td class="name">織田信長</td><td class="year">1582年</td><td class="desc">尾張の戦国大名。桶狭間の戦いで今川義元を破り、足利義昭を奉じて上洛した。室町幕府を事実上終わらせ、安土城を築いて楽市楽座を進めたが、本能寺の変で自害した。</td></tr>
+          <tr><td class="name">豊臣秀吉</td><td class="year">1598年</td><td class="desc">低い身分の出身とされ、信長に仕えて頭角を現した。本能寺の変後に明智光秀を破り、1590年の小田原征伐で天下を統一。太閤検地や刀狩を行い、晩年は朝鮮出兵を行った。</td></tr>
+          <tr><td class="name">徳川家康</td><td class="year">1616年</td><td class="desc">三河の戦国大名。秀吉に臣従したのち、1600年の関ヶ原の戦いに勝利し、1603年に征夷大将軍となって江戸幕府を開いた。</td></tr>
+          <tr><td class="name">明智光秀</td><td class="year">1582年</td><td class="desc">信長の重臣。本能寺の変で信長を討ったが、山崎の戦いで秀吉に敗れ、敗走の途中で討たれたとされる。</td></tr>
+          <tr><td class="name">柴田勝家</td><td class="year">1583年</td><td class="desc">信長の重臣。信長の死後に秀吉と対立し、賤ヶ岳の戦いに敗れて越前の北ノ庄城で自害した。</td></tr>
+          <tr><td class="name">前田利家</td><td class="year">1599年</td><td class="desc">信長・秀吉に仕え、秀吉政権の五大老の一人となった。秀頼の後見役を務め、のちの加賀藩前田家の祖となる。</td></tr>
+          <tr><td class="name">石田三成</td><td class="year">1600年</td><td class="desc">秀吉の側近で五奉行の一人。秀吉の死後、関ヶ原の戦いで西軍を率いて家康と戦って敗れ、京都で処刑された。</td></tr>
+          <tr><td class="name">黒田官兵衛</td><td class="year">1604年</td><td class="desc">秀吉の軍師として知られる。出家して如水と号した。キリシタンとしても知られる。</td></tr>
+          <tr><td class="name">竹中半兵衛</td><td class="year">1579年</td><td class="desc">秀吉を支えた軍師。三木城攻めの陣中で病没した。</td></tr>
+          <tr><td class="name">伊達政宗</td><td class="year">1636年</td><td class="desc">奥州の戦国大名。秀吉に臣従したのち、仙台藩の初代藩主となった。家臣の支倉常長を遣欧使節として派遣したことでも知られる。</td></tr>
+          <tr><td class="name">真田信繁（幸村）</td><td class="year">1615年</td><td class="desc">大坂の陣で豊臣方として戦い、大坂夏の陣では家康の本陣に迫る奮戦を見せたが、討ち死にした。</td></tr>
+          <tr><td class="name">武田信玄</td><td class="year">1573年</td><td class="desc">甲斐の戦国大名。三方ヶ原の戦いで家康を破ったが、上洛の途上で病に倒れ、没した。</td></tr>
+          <tr><td class="name">豊臣秀頼</td><td class="year">1615年</td><td class="desc">秀吉の子。幼くして後継者となり、大坂夏の陣で母の淀殿とともに自害し、豊臣家は滅亡した。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="group">
+    <h2 class="section-label">文化・芸術・茶の湯 <span class="eng">Arts</span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="c-name">名前</th><th class="c-year">没年</th><th>解説</th></tr></thead>
+        <tbody>
+          <tr><td class="name">千利休</td><td class="year">1591年</td><td class="desc">堺の商人出身の茶人。侘び茶を大成し、秀吉の茶頭を務めたが、のちに秀吉の命で切腹した。</td></tr>
+          <tr><td class="name">狩野永徳</td><td class="year">1590年</td><td class="desc">狩野派を代表する絵師。安土城や聚楽第の障壁画を手がけたと伝えられ、代表作に「唐獅子図屏風」「洛中洛外図屏風」がある。</td></tr>
+          <tr><td class="name">長谷川等伯</td><td class="year">1610年</td><td class="desc">能登出身の絵師。狩野派と並ぶ画風を築き、水墨画の傑作「松林図屏風」を残した。</td></tr>
+          <tr><td class="name">古田織部</td><td class="year">1615年</td><td class="desc">利休の弟子で、武将・茶人。独創的な意匠の「織部焼」を広めたが、大坂の陣ののち嫌疑を受けて切腹した。</td></tr>
+          <tr><td class="name">出雲阿国</td><td class="year">不詳</td><td class="desc">歌舞伎の創始者とされる女性の芸能者。京都で「かぶき踊り」を披露して人気を博した。没年ははっきりしていない。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="group">
+    <h2 class="section-label">女性たち <span class="eng">Women</span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="c-name">名前</th><th class="c-year">没年</th><th>解説</th></tr></thead>
+        <tbody>
+          <tr><td class="name">淀殿</td><td class="year">1615年</td><td class="desc">浅井長政とお市の方の娘。秀吉の側室となって秀頼を産み、大坂夏の陣で秀頼とともに自害した。</td></tr>
+          <tr><td class="name">北政所（ねね）</td><td class="year">1624年</td><td class="desc">秀吉の正室。秀吉の死後は出家して高台院と称し、京都に高台寺を建立した。</td></tr>
+          <tr><td class="name">細川ガラシャ</td><td class="year">1600年</td><td class="desc">明智光秀の娘で、細川忠興の妻。キリスト教に入信し、関ヶ原の戦いの直前、人質になることを拒んで亡くなった。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="group">
+    <h2 class="section-label">南蛮・キリシタン <span class="eng">Namban</span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="c-name">名前</th><th class="c-year">没年</th><th>解説</th></tr></thead>
+        <tbody>
+          <tr><td class="name">ルイス・フロイス</td><td class="year">1597年</td><td class="desc">ポルトガル出身のイエズス会宣教師。信長や秀吉にも会い、当時の日本を記録した『日本史』を著した。長崎で没した。</td></tr>
+          <tr><td class="name">大友宗麟</td><td class="year">1587年</td><td class="desc">豊後の戦国大名。キリシタン大名として洗礼を受け、天正遣欧使節の派遣にもかかわった。</td></tr>
+          <tr><td class="name">高山右近</td><td class="year">1615年</td><td class="desc">キリシタン大名。禁教令によって国外に追放され、フィリピンのマニラで没した。</td></tr>
+          <tr><td class="name">支倉常長</td><td class="year">1622年</td><td class="desc">伊達政宗の家臣。慶長遣欧使節としてスペインやローマへ渡った。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <a class="back-link" href="gallery.html">← 画集に戻る</a>
+
+</main>
+
+<footer>
+  <p class="brand-foot">安土桃山時代 ― 黄金と侘びが交わりし刻</p>
+  <p class="notice">
+    当サイトの文章・画像を、AIモデルの学習データとして使用することを固く禁じます。<br>
+    No content on this site may be used for AI training purposes.
+  </p>
+  <a class="hub-link" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Azalea Creative Room へ戻る</a>
+  <p class="copy">&copy; 2026 Azalea72 / アザレアななじゅうに</p>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+
+  const groups = document.querySelectorAll('.group');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    groups.forEach(el => io.observe(el));
+  } else {
+    groups.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
