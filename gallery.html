@@ -168,6 +168,47 @@
   .caption h2{ font-size:1rem; color:var(--sumi); margin-top:2px; font-weight:600; }
   .caption .date{ font-size:0.78rem; color:#7a6a5e; margin-top:2px; }
 
+  /* ---------- Report link box ---------- */
+  .report-link{
+    position:relative;
+    display:flex; align-items:center; gap:22px;
+    margin-top:64px;
+    padding:30px clamp(22px, 5vw, 44px);
+    background:linear-gradient(135deg, var(--momoiro-pale), #fffefb 60%);
+    border:1px solid rgba(198,161,91,0.6);
+    box-shadow:var(--shadow-scroll);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .report-link::before, .report-link::after{
+    content:""; position:absolute; top:-4px; bottom:-4px; width:8px;
+    background:linear-gradient(90deg, #4a332a, #6b4a3a 50%, #3a2721);
+    border-radius:4px;
+  }
+  .report-link::before{ left:-4px; }
+  .report-link::after{ right:-4px; }
+  .report-link:hover, .report-link:focus-visible{
+    transform:translateY(-4px); box-shadow:0 14px 30px rgba(42,33,29,0.22);
+  }
+  .report-link:focus-visible{ outline:2px solid var(--momoiro-deep); outline-offset:6px; }
+  .report-mark{
+    flex-shrink:0; width:64px; height:64px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Shippori Mincho", serif; font-size:1.5rem; font-weight:800; color:#fff;
+    background:radial-gradient(circle at 35% 30%, var(--momoiro), var(--enji));
+    border:2px solid var(--kin);
+    border-radius:50%;
+  }
+  .report-body{ flex:1; min-width:0; }
+  .report-body .eng{ display:block; font-size:0.68rem; color:var(--kin); }
+  .report-body h2{ font-size:clamp(1.1rem, 3vw, 1.4rem); color:var(--enji); margin:2px 0 4px; }
+  .report-body p{ font-size:0.88rem; color:#54463c; }
+  .report-arrow{ font-size:1.8rem; color:var(--kin); transition:transform .3s ease, color .3s ease; }
+  .report-link:hover .report-arrow{ transform:translateX(5px); color:var(--enji); }
+  @media (max-width:520px){
+    .report-link{ gap:14px; }
+    .report-mark{ width:50px; height:50px; font-size:1.2rem; }
+  }
+
   /* ---------- Lightbox ---------- */
   .lightbox{
     position:fixed; inset:0; z-index:100;
@@ -285,6 +326,15 @@
     </div>
 
   </div>
+  <a class="report-link" href="report1.html">
+    <span class="report-mark">人物</span>
+    <span class="report-body">
+      <span class="eng">Special Feature</span>
+      <h2>安土桃山時代に関する人物</h2>
+      <p>この時代を彩った人びとをまとめた特集ページはこちら。</p>
+    </span>
+    <span class="report-arrow">›</span>
+  </a>
 </main>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="作品拡大表示">
